@@ -28,7 +28,7 @@ module.exports = {
                 dialog: '3px 4px 15px 0 rgba(36, 37, 38, 0.22)',
             },
             maxWidth: {
-                custom: '62.5rem'
+                custom: '68.5rem'
             },
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
