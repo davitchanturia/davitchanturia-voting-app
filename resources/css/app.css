@@ -55,3 +55,5 @@
    border: theme('colors.blue') 1px solid;
    border-radius: 20px;
 }
+
+[x-cloak] { display: none !important; }
