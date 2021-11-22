@@ -18,12 +18,12 @@
     </head>
     <body class="font-sans bg-bodyColor text-gray-900 text-sm">
 
-       <header class="flex items-center justify-between px-8 py-4">
+        <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
            <a href="#">
                <img src="{{ asset('img/logo.svg') }}" alt="">
            </a>
            
-           <div class="flex items-center">
+           <div class="flex items-center mt-2 md:mt-0">
 
             @if (Route::has('login'))
                 <div class="px-6 py-4 ">
@@ -55,8 +55,8 @@
            </div>
        </header>
 
-       <main class="container mx-auto max-w-custom flex" ">
-            <div class="w-70 mr-5" >
+       <main class="container mx-auto max-w-custom flex flex-col md:flex-row md:stiky md:top-8" >
+            <div class="w-70 mx-auto md:mr-5 md:mx-0" >
                 <div class="border-2  rounded-xl mt-16 bg-white"
                      style=" border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                      border-image-slice: 1;
@@ -118,8 +118,8 @@
                 </div>
             </div>
 
-            <div class="w-175">
-                <nav class="flex items-center justify-between text-xs">
+            <div class="w-full px-2 md:px-0 md:w-175">
+                <nav class="hidden md:flex items-center justify-between text-xs">
                     <ul class="flex uppercase font-semibold space-x-10 border-b-4 pb-3">
                         <li>
                             <a href="#" class="border-b-4 pb-3 border-blue">
