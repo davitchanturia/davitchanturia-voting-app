@@ -50,3 +50,8 @@
     background: theme('colors.purple');
     opacity: 1;
 }
+
+.is-admin{
+   border: theme('colors.blue') 1px solid;
+   border-radius: 20px;
+}
