@@ -45,9 +45,11 @@
 
 
     <div class="ideas-container space-y-6 my-6">
-        <div class="idea-container bg-white rounded-xl flex cursor-pointer
-            hover:shadow-card transition duration-150 ease-in
-            ">
+
+        @foreach ($ideas as $idea)
+            <div class="idea-container bg-white rounded-xl flex cursor-pointer
+                 hover:shadow-card transition duration-150 ease-in
+        ">
 
             {{-- first div --}}
             <div class="hidden md:block border-r border-gray-100 px-5 py-8">
@@ -66,26 +68,26 @@
 
             </div>
 
-            {{-- second div --}}
+        {{-- second div --}}
             <div class="flex flex-col md:flex-row flex-1 px-2 py-6 ">
                 <div class="flex-none mx-2 md:mx-4 ">
                     <a href="#" >
                         <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                
+            
                 <div class="md:mx-4 mx-2 w-full flex flex-col justify-between">
                     <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                        <a href="#" class="hover:underline"> A random title can go here</a>
+                        <a href="{{ route('idea.show', [$idea]) }}" class="hover:underline"> {{ $idea->title }} </a>
                     </h4>
 
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione accusamus omnis harum ipsum nulla non, repudiandae aspernatur doloribus aliquid maiores nisi quidem beatae amet! Suscipit vero soluta in explicabo asperiores voluptates odit, assumenda, dolores rem sequi animi libero natus iusto labore ipsum commodi laboriosam ad molestias eaque? Voluptas id laudantium iste fugiat natus ipsa fugit, est pariatur laborum? Nihil nulla porro soluta libero provident odit quia saepe tenetur a quasi corporis rem quae dolores, amet similique quas exercitationem ea? Maxime, necessitatibus, dolore nesciunt tempore unde asperiores ducimus quasi, ullam soluta repellat ratione. Architecto ad natus nam quas mollitia tenetur eveniet.
+                        {{ $idea->describtion }}
                     </div>
 
                     <div class="flex flex-col  md:flex-row justify-between md:items-center  mt-6">
                         <div class="flex items-center text-xs font-semibold md:space-x-2 text-gray-400">
-                            <div>10 hours ago</div>
+                            <div> {{ $idea->created_at->diffForHumans() }} </div>
                             <div>&bull;</div>
                             <div>Category 1</div>
                             <div>&bull;</div>
@@ -121,23 +123,28 @@
                             </button>
                         </div>
 
-                        <div class="flex items-center md:hidden mt-4 md:mt-0">
-                            <div class="bg-gray-100 items-ceter rounded-xl h-10 px-4 py-2 pr-8">
-                                <div class="text-sm font-bold leading none">12</div>
-                                <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                            <div class="flex items-center md:hidden mt-4 md:mt-0">
+                                <div class="bg-gray-100 items-ceter rounded-xl h-10 px-4 py-2 pr-8">
+                                    <div class="text-sm font-bold leading none">12</div>
+                                    <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                                </div>
+                                <button class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
+                                    hover:border-gray-400 transition duration-150 ease-in px-4 py-3">
+                                    Vote
+                                </button>
                             </div>
-                            <button class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
-                                hover:border-gray-400 transition duration-150 ease-in px-4 py-3">
-                                Vote
-                            </button>
+
                         </div>
 
                     </div>
-
                 </div>
-            </div>
 
-        </div>
+            </div>
+        @endforeach
+    </div>
+
+    <div class="my-8">
+        {{ $ideas->links() }}
     </div>
 
 </x-app-layout>
