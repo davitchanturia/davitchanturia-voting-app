@@ -78,11 +78,11 @@
             
                 <div class="md:mx-4 mx-2 w-full flex flex-col justify-between">
                     <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                        <a href="{{ route('idea.show', [$idea]) }}" class="hover:underline"> {{ $idea->title }} </a>
+                        <a href="{{route('idea.show', [$idea])}}" class="hover:underline"> {{ $idea->title }} </a>
                     </h4>
 
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        {{ $idea->describtion }}
+                        {{ $idea->description }}
                     </div>
 
                     <div class="flex flex-col  md:flex-row justify-between md:items-center  mt-6">

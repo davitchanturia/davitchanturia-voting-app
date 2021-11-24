@@ -24,7 +24,7 @@
                     </h4>
 
                     <div class="text-gray-600 mt-3 line-clamp-3">
-                        {{ $idea->describtion }}
+                        {{ $idea->description }}
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">

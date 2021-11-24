@@ -18,7 +18,7 @@ class CreateIdeasTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->string('slug')->nullable();
-            $table->text('describtion');
+            $table->text('description');
             $table->timestamps();
         });
     }
