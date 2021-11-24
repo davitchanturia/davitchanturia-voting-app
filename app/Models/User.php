@@ -42,10 +42,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // elequent relationship between idea
     public function ideas()
     {
         return $this->hasMany(Idea::class);
     }
 
+    // user avatar
+    public function getAvatar()
+    {
+        $firstCharacter = $this->email[0];
 
+
+
+        $integerToUse = is_numeric($firstCharacter)
+            ? ord(strtolower($firstCharacter)) - 21  // if true
+            : ord(strtolower($firstCharacter)) - 96 ; // else
+
+        return 'https://gravatar.com/avatar/'
+            .md5($this->email)
+            .'?s=200'
+            .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+            .$integerToUse
+            .'.png';
+    }
 }
