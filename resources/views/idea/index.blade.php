@@ -4,11 +4,10 @@
 
             <select name="category" id="category" 
                 class="w-full rounded-xl px-4 py-2 border-none">
-
-                <option value="category one">category one</option>
-                <option value="category two">category two</option>
-                <option value="category three">category three</option>
-                <option value="category four">category four</option>
+                @foreach ($categories as $category)
+                    <option value="category one"> {{ $category->name }}</option>
+                @endforeach
+                
             </select>
 
         </div>
@@ -99,7 +98,7 @@
                              <div class="flex items-center text-xs font-semibold md:space-x-2 text-gray-400">
                                  <div> {{ $idea->created_at->diffForHumans() }} </div>
                                  <div>&bull;</div>
-                                 <div>Category 1</div>
+                                 <div>{{ $idea->category->name }}</div>
                                  <div>&bull;</div>
                                  <div class="text-gray-800">3 comments</div>
                              </div>
