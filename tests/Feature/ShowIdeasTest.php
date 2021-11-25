@@ -111,12 +111,12 @@ class ShowIdeasTest extends TestCase
 
         $response = $this->get(route('idea.index'));
 
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaEleven->title);
+        $response->assertSee($ideaEleven->title);
+        $response->assertDontSee($ideaOne->title);
 
         $response = $this->get('/?page=2');
 
-        $response->assertDontSee($ideaOne->title);
-        $response->assertSee($ideaEleven->title);
+        $response->assertDontSee($ideaEleven->title);
+        $response->assertSee($ideaOne->title);
     }
 }
