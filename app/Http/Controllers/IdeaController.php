@@ -18,9 +18,11 @@ class IdeaController extends Controller
     {
         return view('idea.index', [
             'ideas' => Idea::with('user', 'category', 'status')
+                ->withCount('votes')
                 ->orderBy('id', 'desc')  //sort by latest ideas
                 ->simplePaginate(Idea::PAGINATION_COUNT),  //paginate idea page
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            
         ]);
     }
 
@@ -54,7 +56,8 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return view('idea.show', [
-            'idea' => $idea
+            'idea' => $idea,
+            'votesCount' => $idea->votes()->count()  //როცა ვიძახებთ მოდელში განსაზღვრულ მეთოდს votes როგორც მეთოდს(votes()) იუზერების დატვალლ ხდება მონაცემთა ბაზის მხარეს. თუ გამოვიძახებთ როგორც ცვლადს( votes ) დაითვლის წამოიღებს სათითაოდ ყველა იუზერს და დაითვლის ლარაველის მხარეს
         ]);
     }
 

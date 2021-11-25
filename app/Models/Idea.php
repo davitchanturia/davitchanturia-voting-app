@@ -30,6 +30,12 @@ class Idea extends Model
         return $this->belongsTo(Status::class);
     }
 
+    // elequent relationship between users who voted for certain idea
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'votes');
+    }
+
     public function sluggable(): array
     {
         return [
