@@ -63,7 +63,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($categoryTwo->name);
         $response->assertSee(
             '<div class="bg-purple text-white text-xxs font-bold uppercase 
-        leading-none rounded-full text-center w-28 h-7 py-2 px-4">Considering</div>',
+        leading-none rounded-full text-center w-28 h-7 py-2 px-4"> Considering </div>',
             false
         );
     }
