@@ -9,11 +9,13 @@ class IdeaShow extends Component
 {
     public $idea;
     public $votesCount;
+    public $hasVoted;
 
     public function mount(Idea $idea, $votesCount)
     {
         $this->idea = $idea;
         $this->votesCount = $votesCount;
+        $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
  
     public function render()
@@ -21,8 +23,3 @@ class IdeaShow extends Component
         return view('livewire.idea-show');
     }
 }
-// @foreach ($ideas as $idea)
-// <livewire:idea-index 
-//     :idea="$idea" :votesCount="$idea->votes_count" 
-// />
-// @endforeach
