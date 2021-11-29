@@ -23,12 +23,16 @@
          <div class="mt-8">
 
             @if ($hasVoted)
-                <button class="w-20 bg-blue text-white font-bold text-xxs uppercase rounded-xl px-4 py-3 border border-blue 
+                <button 
+                    wire:click.prevent="vote"
+                    class="w-20 bg-blue text-white font-bold text-xxs uppercase rounded-xl px-4 py-3 border border-blue 
                   hover:border-blue transition duration-150 ease-in">
                      Voted
                 </button>
             @else
-                <button class="w-20 bg-gray-200 font-bold text-xxs uppercase rounded-xl px-4 py-3 border border-gray-200 
+                <button 
+                    wire:click.prevent="vote"
+                    class="w-20 bg-gray-200 font-bold text-xxs uppercase rounded-xl px-4 py-3 border border-gray-200 
                   hover:border-gray-400 transition duration-150 ease-in">
                     Vote
                 </button>
@@ -99,12 +103,16 @@
                          </div>
 
                         @if ($hasVoted)
-                            <button class="w-20 -mx-5 bg-blue border border-blue text-white font-bold text-xxs uppercase rounded-xl
+                            <button
+                                wire:click.prevent="vote" 
+                                class="w-20 -mx-5 bg-blue border border-blue text-white font-bold text-xxs uppercase rounded-xl
                                 hover:border-blue hover:bg-blue transition duration-150 ease-in px-4 py-3">
                                 Voted
                             </button>
                         @else 
-                            <button class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
+                            <button
+                                wire:click.prevent="vote" 
+                                class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
                                 hover:border-gray-400 transition duration-150 ease-in px-4 py-3">
                                 Vote
                              </button>

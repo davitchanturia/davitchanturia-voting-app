@@ -62,12 +62,16 @@
                                 <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
                             </div>
                             @if ($hasVoted)
-                                <button class="w-20 -mx-5 bg-blue border border-blue text-white font-bold text-xxs uppercase rounded-xl
+                                <button
+                                    wire:click.prevent="vote"  
+                                    class="w-20 -mx-5 bg-blue border border-blue text-white font-bold text-xxs uppercase rounded-xl
                                     hover:border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3">
                                     Voted
                                 </button>
                             @else
-                                <button class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
+                                <button
+                                    wire:click.prevent="vote"  
+                                    class="w-20 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xxs uppercase rounded-xl
                                     hover:border-gray-400 transition duration-150 ease-in px-4 py-3">
                                     Vote
                                 </button>
@@ -236,12 +240,16 @@
             </div>
 
             @if ($hasVoted)
-                <button class="w-32 h-11 -mx-5 bg-blue border border-blue text-white font-bold text-xs uppercase rounded-xl
+                <button
+                    wire:click.prevent="vote"  
+                    class="w-32 h-11 -mx-5 bg-blue border border-blue text-white font-bold text-xs uppercase rounded-xl
                     hover:border-blue hover:bg-blue-hover transition duration-150 ease-in px-4 py-3">
                     Voted
                 </button>
             @else
-                <button class="w-32 h-11 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xs uppercase rounded-xl
+                <button
+                    wire:click.prevent="vote"  
+                    class="w-32 h-11 -mx-5 bg-gray-300 border border-gray-200 font-bold text-xs uppercase rounded-xl
                     hover:border-gray-400 transition duration-150 ease-in px-4 py-3">
                     Vote
                 </button>

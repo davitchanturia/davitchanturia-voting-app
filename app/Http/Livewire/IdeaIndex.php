@@ -16,8 +16,23 @@ class IdeaIndex extends Component
         $this->idea = $idea;
         $this->votesCount = $votesCount;
         $this->hasVoted = $idea->voted_by_user;
+    }
 
-        // dd($idea);
+    public function vote()
+    {
+        if (! auth()->check()) {
+            return redirect(route('login'));
+        }
+
+        if ($this->hasVoted) {
+            $this->idea->removeVote(auth()->user());
+            $this->votesCount--;
+            $this->hasVoted = false;
+        } else {
+            $this->idea->vote(auth()->user());
+            $this->votesCount++;
+            $this->hasVoted = true;
+        }
     }
 
     public function render()
