@@ -104,42 +104,7 @@
             </div>
 
             <div class="w-full px-2 md:px-0 md:w-175">
-                <nav class="hidden md:flex items-center justify-between text-xs">
-                    <ul class="flex uppercase font-semibold space-x-10 border-b-4 pb-3">
-                        <li>
-                            <a href="#" class="border-b-4 pb-3 border-blue">
-                                All Ideas (87)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="text-gray-400 border-b-4 pb-3 
-                                                transition duration-150 ease-in hover:border-blue" >
-                                Considering (10)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="text-gray-400 border-b-4 pb-3 
-                                                transition duration-150 ease-in hover:border-blue" >
-                                In Progress (11)
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
-                        <li>
-                            <a href="" class="text-gray-400 border-b-4 pb-3 
-                                                transition duration-150 ease-in hover:border-blue" >
-                                Implemented (10)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="text-gray-400 border-b-4 pb-3 
-                                                transition duration-150 ease-in hover:border-blue" >
-                                CLosed (55)
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <livewire:status-filters />
 
                 <div class="mt-8">
                     {{ $slot }}
