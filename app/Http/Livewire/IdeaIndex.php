@@ -23,7 +23,7 @@ class IdeaIndex extends Component
         if (! auth()->check()) {
             return redirect(route('login'));
         }
-
+    
         if ($this->hasVoted) {
             $this->idea->removeVote(auth()->user());
             $this->votesCount--;
