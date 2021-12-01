@@ -22,11 +22,11 @@ class IdeasIndex extends Component
                 ->when(request()->status && request()->status != 'All', function ($query) use ($statuses) {
                     return $query->where('status_id', $statuses->get(request()->status));
                 })
-                ->addSelect(['voted_by_user' => Vote::select('id')
+                ->addSelect(['voted_by_user' => Vote::select('id')  // count user's votes on certain idea
                     ->where('user_id', auth()->id())
                     ->whereColumn('idea_id', 'ideas.id')
                 ])
-                ->withCount('votes')
+                ->withCount('votes')  //count total votes
                 ->orderBy('id', 'desc')  //sort by latest ideas
                 ->simplePaginate(Idea::PAGINATION_COUNT),  //paginate idea page
             'categories' => Category::all(),

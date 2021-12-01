@@ -109,7 +109,6 @@ class VoteIndexPageTest extends TestCase
 
         $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
 
-
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
             'title' => 'my first idea',
@@ -210,7 +209,6 @@ class VoteIndexPageTest extends TestCase
 
         $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
 
-
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
             'title' => 'my first idea',
@@ -239,7 +237,6 @@ class VoteIndexPageTest extends TestCase
             ->assertSet('hasVoted', false)
             ->assertSee('Vote');
 
-        exit;
         $this->assertDatabaseMissing('votes', [
             'user_id' => $user->id,
             'idea_id' => $idea->id
