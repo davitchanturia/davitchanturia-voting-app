@@ -2,10 +2,11 @@
     <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6 ">
         <div class="w-full md:w-1/3 ">
 
-            <select name="category" id="category" 
+            <select wire:model="category" name="category" id="category" 
                 class="w-full rounded-xl px-4 py-2 border-none">
+                <option value="All Categories">All Categories</option>
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}}"> {{ $category->name }}</option>
+                    <option value="{{$category->name}}"> {{ $category->name }}</option>
                 @endforeach
                 
             </select>

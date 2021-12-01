@@ -9,16 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 class StatusFilters extends Component
 {
-    public $status = 'All';
+    public $status;
     public $statusCount;
 
-    protected $queryString = [
-        'status'
-    ];
 
     public function setStatus($newStatus)
     {
         $this->status = $newStatus;
+        $this->emit('queryStringUpdatedStatus', $this->status); // იქმნება ივენთი და emit მეთოდი აგზავნის პარამეტრად გადაცემულ სტატუსის მნიშვნელობას
 
         if ($this->getPreviousRouteName() === 'idea.show') {
             return redirect()->route('idea.index', [
@@ -30,10 +28,10 @@ class StatusFilters extends Component
     public function mount()
     {
         $this->statusCount = Status::getCount();
+        $this->status = request()->status ?? 'All';
 
         if (Route::currentRouteName() === 'idea.show') {
             $this->status = null;
-            $this->queryString = [];
         }
     }
 
