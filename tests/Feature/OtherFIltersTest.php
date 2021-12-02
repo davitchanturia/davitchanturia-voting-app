@@ -158,8 +158,8 @@ class OtherFIltersTest extends TestCase
         $user = User::factory()->create();
         $userB = User::factory()->create();
 
-        $category = Category::factory()->create();
-        $categoryB = Category::factory()->create();
+        $category = Category::factory()->create(['name' => 'Category 1']);
+        $categoryB = Category::factory()->create(['name' => 'Category 2']);
         
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
