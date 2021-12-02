@@ -15,10 +15,13 @@ class IdeasIndex extends Component
 
     public $status;
     public $category;
+    public $filter;
 
+    // queryString ცვლადი უზრუნველყოფს რომ ბრაუზერის url ში თვალსაჩინო იყოს შესრულებული ყველა query
     protected $queryString = [
         'status',
-        'category'
+        'category',
+        'filter'
     ];
 
     public function mount()
@@ -29,14 +32,24 @@ class IdeasIndex extends Component
 
     protected $listeners = ['queryStringUpdatedStatus'];  //statusFIlters-ში შექმნილ ივენთს ვარეგისტრირებთ აქ
 
-    // public function updatingStatus()
-    // {
-    //     $this->resetPage();
-    // }
-
+    // when category is changed user has to be redirected to first page
     public function updatingCategory()
     {
         $this->resetPage();
+    }
+
+    public function updatingFIlter()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilter()
+    {
+        if ($this->filter === 'My Ideas') {
+            if (! auth()->check()) {
+                return redirect()->route('login');
+            }
+        }
     }
 
     public function queryStringUpdatedStatus($newStatus) //ივენთის საშუალებით გამოგზავნილ სტატუსს მნიშვნელობას ვანიჭებთ ამ კლასში სტატუს ცვლადს
@@ -52,11 +65,17 @@ class IdeasIndex extends Component
 
         return view('livewire.ideas-index', [
             'ideas' => Idea::with('user', 'category', 'status')
-                ->when($this->status && $this->status != 'All', function ($query) use ($statuses) {
+                ->when($this->status && $this->status != 'All', function ($query) use ($statuses) {  // filters ideas by certain status
                     return $query->where('status_id', $statuses->get($this->status));
                 })
                 ->when($this->category && $this->category != 'All Categories', function ($query) use ($categories) {
-                    return $query->where('category_id', $categories->pluck('id', 'name')->get($this->category));
+                    return $query->where('category_id', $categories->pluck('id', 'name')->get($this->category));  //filters by sertain category
+                })
+                ->when($this->filter && $this->filter === 'Top Voted', function ($query) {   // filters ideas by votes count
+                    return $query->orderByDesc('votes_count');
+                })
+                ->when($this->filter && $this->filter === 'My Ideas', function ($query) {  // filtrs by logged in user's ideas
+                    return $query->where('user_id', auth()->id());
                 })
                 ->addSelect(['voted_by_user' => Vote::select('id')  // count user's votes on certain idea
                     ->where('user_id', auth()->id())

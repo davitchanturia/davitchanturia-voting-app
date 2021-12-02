@@ -15,13 +15,12 @@
 
         <div class="w-full md:w-1/3">
 
-            <select name="other_filters" id="other_filters" 
+            <select wire:model="filter" name="other_filters" id="other_filters" 
                 class="w-full rounded-xl px-4 py-2 border-none">
 
-                <option value="category one">category one</option>
-                <option value="category two">category two</option>
-                <option value="category three">category three</option>
-                <option value="category four">category four</option>
+                <option value="No Filter">No Filters</option>
+                <option value="Top Voted">Top Voted</option>
+                <option value="My Ideas">My Ideas</option>
                 
             </select>
 
