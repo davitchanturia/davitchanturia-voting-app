@@ -84,7 +84,7 @@ class IdeasIndex extends Component
                 ->when($this->filter && $this->filter === 'My Ideas', function ($query) {  // filtrs by logged in user's ideas
                     return $query->where('user_id', auth()->id());
                 })
-                ->when(strlen($this->search) >= 3, function ($query) {  // filtrs by logged in user's ideas
+                ->when(strlen($this->search) >= 3, function ($query) {  // filtrs by search input
                     return $query->where('title', 'like', '%'.$this->search.'%');
                 })
                 ->addSelect(['voted_by_user' => Vote::select('id')  // count user's votes on certain idea
