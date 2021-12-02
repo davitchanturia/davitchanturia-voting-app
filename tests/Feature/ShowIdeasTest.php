@@ -48,4 +48,48 @@ class ShowIdeasTest extends TestCase
         $response->assertDontSee($ideaEleven->title);
         $response->assertSee($ideaOne->title);
     }
+
+    public function test_in_app_back_button_works_when_index_page_visited_first()
+    {
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create(['name' => 'category 1']);
+        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'description for idea',
+            'category_id' => $category->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        $response = $this->get('/?category=Category%202&status=Open');
+        $response = $this->get(route('idea.show', [$idea]));
+        
+        $this->assertStringContainsString('/?category=Category%202&status=Open', $response['backUrl']);
+    }
+
+    public function test_in_app_back_button_works_when_show_page_only_page_visited()
+    {
+        $user = User::factory()->create();
+
+        $category = Category::factory()->create(['name' => 'category 1']);
+        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My First Idea',
+            'description' => 'description for idea',
+            'category_id' => $category->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        $response = $this->get(route('idea.show', [$idea]));
+        
+        
+        $this->assertStringContainsString(route('idea.index'), $response['backUrl']);
+    }
 }

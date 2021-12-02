@@ -21,7 +21,7 @@
     <body class="font-sans bg-bodyColor text-gray-900 text-sm">
 
         <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
-           <a href="#">
+           <a href="{{ route('idea.index') }}">
                <img src="{{ asset('img/logo.svg') }}" alt="">
            </a>
            
