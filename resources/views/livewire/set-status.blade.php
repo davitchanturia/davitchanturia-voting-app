@@ -86,8 +86,9 @@
 
                 <button type="submit" 
                         class="items-center justify-center m-1/2  h-11 flex text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
-                            transition duration-150 ease-in
-                ">
+                            transition duration-150 ease-in disabled:opacity-50"
+                            
+                        >
                     <span class="ml-1">Update</span>
                 </button>
 
@@ -95,7 +96,8 @@
 
             <div>
                 <label for="" class="font-normal inline-flex items-center">
-                    <input type="checkbox" name="notify_voters" class="rounded bg-gray-200">
+                    <input wire:model="notifyAllVoters" type="checkbox" name="notify_voters" 
+                        class="rounded bg-gray-200">
                     <span class="ml-2">Notify all voters</span>
                 </label>
             </div>
