@@ -59,8 +59,6 @@ class User extends Authenticatable
     {
         $firstCharacter = $this->email[0];
 
-
-
         $integerToUse = is_numeric($firstCharacter)
             ? ord(strtolower($firstCharacter)) - 21  // if true
             : ord(strtolower($firstCharacter)) - 96 ; // else
@@ -71,5 +69,12 @@ class User extends Authenticatable
             .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
             .$integerToUse
             .'.png';
+    }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, [
+            'dato@redberry.ge'
+        ]);
     }
 }
