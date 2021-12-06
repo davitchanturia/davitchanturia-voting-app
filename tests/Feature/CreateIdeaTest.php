@@ -57,9 +57,8 @@ class CreateIdeaTest extends TestCase
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create(['name' => 'Categoory 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'Categoory 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
 
 
         Livewire::actingAs($user)
@@ -77,6 +76,11 @@ class CreateIdeaTest extends TestCase
 
         $this->assertDatabaseHas('ideas', [
             'title' => 'My First Idea'
+        ]);
+
+        $this->assertDatabaseHas('votes', [
+            'idea_id' => 1,
+            'user_id' => 1
         ]);
     }
 

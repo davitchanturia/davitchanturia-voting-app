@@ -19,21 +19,7 @@ class VoteShowPageTest extends TestCase
 
     public function test_show_page_contains_idea_show_livewire_component()
     {
-        $user = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'category 2']);
-
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+        $idea = Idea::factory()->create();
 
         $this->get(route('idea.show', $idea))
             ->assertSeeLivewire('idea-show');
@@ -44,18 +30,8 @@ class VoteShowPageTest extends TestCase
         $user = User::factory()->create();
         $userB = User::factory()->create();
         
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'category 2']);
-
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
         ]);
 
         Vote::factory()->create([
