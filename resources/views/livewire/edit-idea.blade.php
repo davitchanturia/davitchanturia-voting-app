@@ -4,7 +4,13 @@
     x-show="show"
     @keydown.escape.window="show = false"
     @custom-show-edit-modal.window="show=true"  {{-- ვიღებთ გამოგზავნილ ივენთს და ვცვლით მნიშვნელობას --}}
-    class="fixed z-10 inset-0 overflow-y-auto" 
+    x-init="
+        window.livewire.on('ideaWasUpdated', () => {
+            show = false
+        })
+    "
+
+    class="fixed z-10 inset-0 overflow-y-auto" $ide$ide
     aria-labelledby="modal-title" 
     role="dialog" 
     aria-modal="true"
@@ -49,7 +55,7 @@
                 <h3 class="text-center text-lg font-medium text-gray-900">Edit Idea</h3>
                 <p class="text-xs text-center text-gray-500 leading-4 mt-4">You have one hour to edit your idea from the time you created it.</p>
 
-                <form wire:submit.prevent="createIdea" action="#" method="post" class="space-y-4 px-4 py-6 ">
+                <form wire:submit.prevent="UpdateIdea" action="#" method="post" class="space-y-4 px-4 py-6 ">
                     @csrf
                  
                     <div>
@@ -66,13 +72,10 @@
                              name="category_add" id="category_add" 
                              class="w-full bg-gray-100 rounded-xl px-4 py-2 border-none text-sm">
                  
-                             {{-- @foreach ($categories as $category)
+                             @foreach ($categories as $category)
                                  <option value="{{ $category->id }}">{{ $category->name }}</option>    
-                             @endforeach --}}
-                             <option value="category one">category one</option>
-                             <option value="category two">category two</option>
-                             <option value="category three">category three</option>
-                             <option value="category four">category four</option>
+                             @endforeach
+        
                          </select>
                     </div>
                     @error('category')
@@ -106,7 +109,7 @@
                                  class="items-center justify-center w-1/2 h-11 flex text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
                                      transition duration-150 ease-in
                          ">
-                             <span class="ml-1">Submit</span>
+                             <span class="ml-1">Update</span>
                          </button>
                  
                     </div>

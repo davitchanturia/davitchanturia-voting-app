@@ -53,7 +53,8 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea)
     {
-        //
+        return $user->id === (int) $idea->user_id  // user can edit only his idea
+            && now()->subHour() <= $idea->created_at;  //თუ იდეის შექმნიდან ერთ საათზე მეტია გასული ვერ დავაედითებთ იდეას
     }
 
     /**

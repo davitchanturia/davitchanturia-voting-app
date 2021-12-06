@@ -51,17 +51,20 @@
                                     x-show.transition.origin.top.left.duration.500ms="show"
                                     @click.away="show = false"
                                 >
-                                    <li> 
-                                        <a  
-                                            @click="
-                                                show = false
-                                                $dispatch('custom-show-edit-modal') {{-- ვაგზავნით ივენთს --}}
-                                            "
-                                            href="#" 
-                                            class="hover:bg-gray-100 px-5 py-3 block">
-                                            Edit Idea
-                                        </a> 
-                                    </li>
+                                    @can('update', $idea) 
+                                        
+                                        <li> 
+                                            <a  
+                                               @click="
+                                               show = false
+                                               $dispatch('custom-show-edit-modal') {{-- ვაგზავნით ივენთს --}}
+                                               "
+                                               href="#" 
+                                               class="hover:bg-gray-100 px-5 py-3 block">
+                                               Edit Idea
+                                            </a> 
+                                        </li>
+                                    @endcan
                                     <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Delete Idea</a> </li>
                                     <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Mark as spam</a> </li>
                                 </ul>

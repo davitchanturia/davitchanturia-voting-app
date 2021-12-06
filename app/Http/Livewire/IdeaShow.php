@@ -11,7 +11,7 @@ class IdeaShow extends Component
     public $votesCount;
     public $hasVoted;
 
-    protected $listeners = ['statusWasUpdated'];  //registering event from setStatus file
+    protected $listeners = ['statusWasUpdated', 'ideaWasUpdated'];  //registering event from setStatus file
 
     public function mount(Idea $idea, $votesCount)
     {
@@ -22,6 +22,11 @@ class IdeaShow extends Component
 
     // refreshing page to change status after after event
     public function statusWasUpdated()
+    {
+        $this->idea->refresh();
+    }
+
+    public function ideaWasUpdated()
     {
         $this->idea->refresh();
     }
