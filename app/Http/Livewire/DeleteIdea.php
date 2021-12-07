@@ -15,12 +15,6 @@ class DeleteIdea extends Component
     // public $category;
     // public $description;
 
-    // protected $rules  =[
-    //     'title' => 'required|min:4',
-    //     'category' => 'required|integer|exists:categories,id',
-    //     'description' => 'required|min:4',
-    // ];
-
     public function mount(Idea $idea)
     {
         $this->idea = $idea;
@@ -36,8 +30,6 @@ class DeleteIdea extends Component
         if (auth()->guest() || auth()->user()->cannot('delete', $this->idea)) {
             abort(Response::HTTP_FORBIDDEN);
         }
-
-        // $this->validate();
 
         Vote::where('idea_id', $this->idea->id)->delete();  // ვშლით ყველა იმ ვოუთებს რომელიც იდეასთან არის დაკავშირებული
 
