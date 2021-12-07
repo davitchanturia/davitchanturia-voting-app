@@ -3,7 +3,10 @@
     x-data="{ show: false }"
     x-show="show"
     @keydown.escape.window="show = false"
-    @custom-show-edit-modal.window="show=true"  {{-- ვიღებთ გამოგზავნილ ივენთს და ვცვლით მნიშვნელობას --}}
+    @custom-show-edit-modal.window="  {{-- ვიღებთ გამოგზავნილ ივენთს და ვცვლით მნიშვნელობას --}}
+        show=true
+        $nextTick(()=> $refs.title.focus() )  {{-- როცა ედიტის მოდალი ამოხტება პირველი ინფუთი იქნება დასელექთებული // title სელექტორია პირველი ინფუთის --}}
+    "  
     x-init="
         window.livewire.on('ideaWasUpdated', () => {
             show = false
@@ -23,18 +26,7 @@
             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" 
             aria-hidden="true">
         </div>
-  
-
-      <!--
-        Modal panel, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
+ 
         <div x-show ="show"
              x-transition.origin.bottom.duration.300ms
             class="modal bg-white rounded-tl-lg rounded-tr-xl px-4 pt-5 pb-4 overflow-hidden transform transition-all py-4 sm:max-w-lg sm:w-full sm:p-6 "
@@ -59,12 +51,12 @@
                     @csrf
                  
                     <div>
-                         <input wire:model.defer="title" 
-                             type="text" class="w-full text-sm border-none bg-gray-100 rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your idea">
+                         <input wire:model.defer="title" x-ref="title" type="text" 
+                            class="w-full text-sm border-none bg-gray-100 rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your idea">
                          
-                             @error('title')
-                                 <p class="text-red text-xs mt-1"> {{ $message }} </p>
-                             @enderror
+                            @error('title')
+                                <p class="text-red text-xs mt-1"> {{ $message }} </p>
+                            @enderror
                     </div>
                  
                     <div>

@@ -16,6 +16,8 @@
 
     <livewire:edit-idea :idea="$idea" />
 
+    <livewire:delete-idea :idea="$idea" />
+
     <div class="comments-container space-y-6 md:ml-22 my-8 mt-1 pt-4 relative">
         <div class="comment-container relative flex flex-1 px-4 py-6 ">
 

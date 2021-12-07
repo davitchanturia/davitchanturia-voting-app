@@ -55,9 +55,9 @@
                                         
                                         <li> 
                                             <a  
-                                               @click="
-                                               show = false
-                                               $dispatch('custom-show-edit-modal') {{-- ვაგზავნით ივენთს --}}
+                                               @click.prevent="
+                                                   show = false
+                                                   $dispatch('custom-show-edit-modal') {{-- ვაგზავნით ივენთს --}}
                                                "
                                                href="#" 
                                                class="hover:bg-gray-100 px-5 py-3 block">
@@ -65,7 +65,19 @@
                                             </a> 
                                         </li>
                                     @endcan
-                                    <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Delete Idea</a> </li>
+
+                                    @can('delete', $idea) 
+                                        <li> 
+                                            <a 
+                                                @click.prevent="
+                                                    show = false
+                                                    $dispatch('custom-show-delete-modal') {{-- ვაგზავნით ივენთს --}}
+                                                "
+                                                href="#" class="hover:bg-gray-100 px-5 py-3 block">
+                                                Delete Idea
+                                            </a> 
+                                        </li>
+                                    @endcan
                                     <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Mark as spam</a> </li>
                                 </ul>
                             </div>
