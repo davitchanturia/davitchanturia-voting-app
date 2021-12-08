@@ -40,7 +40,7 @@ class CreateIdea extends Component
         $idea->vote(auth()->user());
         
         // session flash message
-        session()->flash('success_message', 'Idea was added succesfully.');
+        session()->flash('success_message', 'Idea was added succesfully!');
 
         //clear the form
         $this->reset();

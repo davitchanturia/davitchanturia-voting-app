@@ -35,6 +35,9 @@ class DeleteIdea extends Component
 
         Idea::destroy($this->idea->id);  //და შემდეგ ვშლით იდეას
 
+        // session flash message
+        session()->flash('success_message', 'Idea was deleted succesfully!');
+
         return redirect(route('idea.index'));
     }
 

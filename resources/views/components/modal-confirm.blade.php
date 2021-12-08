@@ -17,7 +17,7 @@
         $nextTick(()=> $refs.confirmButton.focus() )  {{-- როცა წაშლის მოდალი ამოხტება წაშლის ღილაკი იქნება დაფოკუსებული // confirmButton სელექტორია ღილაკის --}}
     "  
     x-init="
-        window.livewire.on('{{ $eventToCloseModal }}', () => {
+        Livewire.on('{{ $eventToCloseModal }}', () => {
             show = false
         })
     " 

@@ -113,7 +113,14 @@
 
             <div class="w-24"></div>
 
-       </main>
+        </main>
+
+        @if (session('success_message'))
+            <x-notification-success 
+                :ifFullRefresh="true"
+                messageToDisplay="{{ session('success_message') }}"
+            />
+        @endif
 
        <livewire:scripts />
     </body>

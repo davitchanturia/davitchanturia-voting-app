@@ -43,7 +43,7 @@
                                 {{ $idea->status->name }}
                             </div>
                             @auth
-                            <div class="relative z-50 sm:z-0">
+                            <div class="relative z-50 sm:z-10">
                                 <button class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 py- px-3
                                     transition duration-150 ease-in"
                                     @click="show = !show"

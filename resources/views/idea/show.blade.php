@@ -19,8 +19,8 @@
     <x-modals-container :idea="$idea"/>
    
 
-    <div class="comments-container space-y-6 md:ml-22 my-8 mt-1 pt-4 relative">
-        <div class="comment-container relative flex flex-1 px-4 py-6 ">
+    <div class="comments-container z-0 space-y-6 md:ml-22 my-8 mt-1 pt-4 relative">
+        <div class="comment-container z-auto relative flex flex-1 px-4 py-6 ">
 
             <div class="bg-white rounded-xl flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
