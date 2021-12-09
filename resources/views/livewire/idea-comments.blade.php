@@ -6,6 +6,7 @@
                 <livewire:idea-comment 
                     :key="$comment->id"
                     :comment="$comment"
+                    :ideaUserId="$idea->user->id"
                 />
             @endforeach
             {{-- <div class="is-admin comment-container relative flex flex-1 px-4 py-6 ">

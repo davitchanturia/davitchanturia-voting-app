@@ -152,49 +152,7 @@
 
         <div class="flex flex-col md:flex-row items-center space-x-4 md:ml-6">
 
-            <div class=" relative"
-                 x-data="{ show:false }"
-            >
-                <button type="button" 
-                    class="items-center justify-center w-32 h-11 flex text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
-                       transition duration-150 ease-in"
-                    @click="show = !show"
-                    >
-                    <span class="ml-1">Reply</span>
-                </button>
-
-                <div class="absolute z-30 bg-white w-70 md:w-104 text-left font-semibold text-sm  shadow-dialog rounded-xl mt-2"
-                    x-cloak
-                    x-show.transition.origin.top.left.duration.500ms="show"
-                >
-                    <form action="#" class="space-y-4 px-4 py-6">
-                        <div>
-                            <textarea name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none py-2" placeholder="GO ahead, don't be shy. Share your thougts..."></textarea>
-                        </div>
-
-                        <div class="flex flex-col md:flex-row items-center md:space-x-3">
-                            <button type="button" 
-                                class="items-center justify-center w-full md:w-1/2 h-11  flex text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
-                                   transition duration-150 ease-in
-                                ">
-                                <span>Post Comment</span>
-                            </button>
-
-                            <button type="button" 
-                                    class="items-center justify-center w-full md:w-32 h-11 flex text-sm bg-gray-200 px-6 py-3 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 mt-2 md:mt-0
-                                        transition duration-150 ease-in
-                            ">
-
-                                <svg class="w-4 text-gray-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                                </svg>
-
-                                <span class="ml-1">Attach</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <livewire:add-comment :idea="$idea"/>
 
             @admin
                 <livewire:set-status :idea="$idea"/>

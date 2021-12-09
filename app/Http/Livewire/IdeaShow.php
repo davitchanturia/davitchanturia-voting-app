@@ -11,7 +11,13 @@ class IdeaShow extends Component
     public $votesCount;
     public $hasVoted;
 
-    protected $listeners = ['statusWasUpdated', 'ideaWasUpdated', 'ideaWasMarkedAsSpam', 'ideaWasMarkedAsNotSpam'];  //registering event from setStatus file
+    protected $listeners = [   //registering event from different files
+        'statusWasUpdated',
+        'ideaWasUpdated',
+        'ideaWasMarkedAsSpam',
+        'ideaWasMarkedAsNotSpam',
+        'commentWasAdded'
+    ];
 
     public function mount(Idea $idea, $votesCount)
     {
@@ -41,6 +47,11 @@ class IdeaShow extends Component
         $this->idea->refresh();
     }
 
+    public function commentWasAdded()
+    {
+        $this->idea->refresh();
+    }
+    
     public function vote()
     {
         if (! auth()->check()) {
@@ -49,6 +60,7 @@ class IdeaShow extends Component
 
         if ($this->hasVoted) {
             $this->idea->removeVote(auth()->user());
+
             $this->votesCount--;
             $this->hasVoted = false;
         } else {
