@@ -1,6 +1,6 @@
-<div class="comment-container z-auto relative flex flex-1 px-4 py-6 ">
+<div class="comment-container bg-white rounded-xl z-auto relative flex flex-1 transition duration-500 ease-in">
 
-    <div class="bg-white rounded-xl flex flex-col md:flex-row flex-1 px-4 py-6">
+    <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
         <div class="flex-none">
             <a href="#" >
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">

@@ -4,12 +4,32 @@
         Livewire.on('commentWasAdded', () => {
             show = false
         })
+        {{-- კომენტარის დამატებისას უნდა ჩამოსქროლოს დამატებულ კომენტარზე და 5 წამით გაამწვანოს --}}
+        Livewire.hook('message.processed', (message, component) => {
+            if(message.updateQueue[0].payload.event === 'commentWasAdded'  {{-- ვამოწმებთ ივენთს --}}
+             && message.component.fingerprint.name === 'idea-comments'){  {{-- ვამოწმებთ ელემენტს რომელზეც ზემოქმედებს ივენთი --}}
+
+                const lastComment = document.querySelector('.comment-container:last-child')
+                lastComment.scrollIntoView({ behavior: 'smooth'})
+
+                lastComment.classList.add('bg-green-50')
+                setTimeout(() => {
+                    lastComment.classList.remove('bg-green-50')
+                }, 5000)
+            }
+        })
+
     " 
  >
     <button type="button" 
         class="items-center justify-center w-32 h-11 flex text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
            transition duration-150 ease-in"
-        @click="show = !show"
+        @click="
+            show = !show
+            if (show){
+                $nextTick(() => $refs.comment.focus() )  {{-- როცა კომენტარის მოდალი ამოხტება ინფუთი იქნება დაფოკუსებული // comment სელექტორია ღილაკის --}}   
+            }
+        "
         >
         <span class="ml-1">Reply</span>
     </button>
@@ -21,7 +41,7 @@
         @auth
         <form wire:submit.prevent="addComment" action="#" class="space-y-4 px-4 py-6">
             <div>
-                <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" 
+                <textarea wire:model="comment" x-ref="comment" name="post_comment" id="post_comment" cols="30" 
                 rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 
                 border-none py-2" placeholder="GO ahead, don't be shy. Share your thougts..." 
                 required></textarea>
