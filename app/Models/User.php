@@ -54,6 +54,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Idea::class, 'votes');
     }
 
+    // elequent relationship between idea comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     // user avatar
     public function getAvatar()
     {

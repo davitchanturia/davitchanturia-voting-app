@@ -6,6 +6,7 @@ use App\Models\Idea;
 use App\Models\User;
 use App\Models\Status;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
     
         Idea::factory(100)->existing()->create();
 
+        //generate unique votes
         foreach (range(1, 20) as $user_id) {
             foreach (range(1, 100) as $idea_id) {
                 if ($idea_id % 2 === 0) {
@@ -42,6 +44,11 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
             }
+        }
+
+        //generate comments for ideas
+        foreach (Idea::all() as $idea) {
+            Comment::factory(5)->existing()->create(['idea_id' => $idea->id]);
         }
     }
 }

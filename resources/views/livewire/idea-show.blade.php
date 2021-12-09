@@ -33,7 +33,7 @@
                             <div>&bull;</div>
                             <div>{{ $idea->category->name }}</div>
                             <div>&bull;</div>
-                            <div class="text-gray-800">3 comments</div>
+                            <div class="text-gray-800">{{ $idea->comments->count() }} comments</div>
                         </div>
 
                         <div 

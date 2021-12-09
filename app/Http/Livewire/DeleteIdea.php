@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\Vote;
 use Livewire\Component;
@@ -32,6 +33,7 @@ class DeleteIdea extends Component
         }
 
         Vote::where('idea_id', $this->idea->id)->delete();  // ვშლით ყველა იმ ვოუთებს რომელიც იდეასთან არის დაკავშირებული
+        Comment::where('idea_id', $this->idea->id)->delete();  // ვშლით ყველა იმ კომენტარებს რომელიც იდეასთან არის დაკავშირებული
 
         Idea::destroy($this->idea->id);  //და შემდეგ ვშლით იდეას
 
