@@ -51,6 +51,9 @@
             livewire.on('commentWasAdded', message => {
                 showNotification(message)
             })
+            livewire.on('commentWasUpdated', message => {
+                showNotification(message)
+            })
         @endif
     " 
     
