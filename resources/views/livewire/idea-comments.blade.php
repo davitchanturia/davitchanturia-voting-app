@@ -9,6 +9,7 @@
                     :ideaUserId="$idea->user->id"
                 />
             @endforeach
+ 
             {{-- <div class="is-admin comment-container relative flex flex-1 px-4 py-6 ">
                 <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                     <div class="flex-none">
@@ -59,6 +60,10 @@
     
             </div> --}}
         
+        </div>
+
+        <div class="my-8 md:ml-22">
+            {{ $comments->onEachSide(1)->links() }}
         </div>
     @else 
         <div class="mx-auto w-70 mt-12">

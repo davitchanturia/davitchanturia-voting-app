@@ -18,34 +18,18 @@ class ShowIdeasTest extends TestCase
     
     public function test_ideas_pagination_works()
     {
-        $user = User::factory()->create();
+        $ideaOne = Idea::factory()->create();
 
-        $category = Category::factory()->create(['name' => 'category 1']);
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        Idea::factory($ideaOne->getPerPage())->create();
 
+        $response = $this->get('/');
 
-        Idea::factory(Idea::PAGINATION_COUNT +1)->create([
-            'user_id' => $user->id,
-            'category_id' => $category->id,
-            'status_id' => $statusOpen->id,
-        ]);
-
-        $ideaOne = Idea::find(1);
-        $ideaOne->title = 'my firts idea';
-        $ideaOne->save();
-
-        $ideaEleven = Idea::find(11);
-        $ideaEleven->title = 'my eleventh idea';
-        $ideaEleven->save();
-
-        $response = $this->get(route('idea.index'));
-
-        $response->assertSee($ideaEleven->title);
+        $response->assertSee(Idea::find(Idea::count())->title);
         $response->assertDontSee($ideaOne->title);
 
         $response = $this->get('/?page=2');
 
-        $response->assertDontSee($ideaEleven->title);
+        $response->assertDontSee(Idea::find(Idea::count())->title);
         $response->assertSee($ideaOne->title);
     }
 

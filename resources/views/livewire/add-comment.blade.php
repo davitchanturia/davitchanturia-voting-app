@@ -6,6 +6,7 @@
         })
         {{-- კომენტარის დამატებისას უნდა ჩამოსქროლოს დამატებულ კომენტარზე და 5 წამით გაამწვანოს --}}
         Livewire.hook('message.processed', (message, component) => {
+
             if(message.updateQueue[0].payload.event === 'commentWasAdded'  {{-- ვამოწმებთ ივენთს --}}
              && message.component.fingerprint.name === 'idea-comments'){  {{-- ვამოწმებთ ელემენტს რომელზეც ზემოქმედებს ივენთი --}}
 
@@ -16,6 +17,13 @@
                 setTimeout(() => {
                     lastComment.classList.remove('bg-green-50')
                 }, 5000)
+            }
+
+            {{-- თუ შეევცვლით კომენტარების ფეიჯს უნდა ასქროლოს პირველ კომენტართან --}}
+            if(['gotoPage', 'previousPage', 'nextPage'].includes(message.updateQueue[0].method)){
+                
+                const firstComment = document.querySelector('.comment-container:first-child')
+                firstComment.scrollIntoView({ behavior: 'smooth'})
             }
         })
 
