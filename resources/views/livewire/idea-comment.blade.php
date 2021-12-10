@@ -56,8 +56,18 @@
                                         </a>
                                     </li>
                                 @endcan
-                                <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Delete Comment</a> </li>
-                                <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Mark as spam</a> </li>
+                                @can('delete', $comment)
+                                    <li>
+                                        <a @click.prevent="
+                                               show = false
+                                               Livewire.emit('setDeleteComment', {{ $comment->id }})
+                                            " 
+                                            href="#" class="hover:bg-gray-100 px-5 py-3 block">
+                                            Delete Comment
+                                        </a>
+                                    </li>
+                                @endcan                             
+                                    {{-- <li> <a href="#" class="hover:bg-gray-100 px-5 py-3 block">Mark as spam</a> </li> --}} 
                             </ul>
                         </div>
 

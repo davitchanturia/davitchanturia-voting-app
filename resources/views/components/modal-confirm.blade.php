@@ -1,5 +1,6 @@
 @props([
-    'eventToOpenModal',
+    'eventToOpenModal' => null,
+    'livewireEventToOpenModal' => null ,
     'eventToCloseModal',
     'modalTitle',
     'modalDescription',
@@ -7,19 +8,31 @@
     'wireClick'
 ])
 
+
+
 <div
     x-cloak
     x-data="{ show: false }"
     x-show="show"
     @keydown.escape.window="show = false"
-    {{ '@'.$eventToOpenModal }}.window="   {{-- ვიღებთ გამოგზავნილ ივენთს და ვცვლით მნიშვნელობას --}}
+    @if (!$livewireEventToOpenModal)
+      {{ '@'.$eventToOpenModal }}.window="   {{-- ვიღებთ გამოგზავნილ ივენთს და ვცვლით მნიშვნელობას --}}
         show = true
         $nextTick(()=> $refs.confirmButton.focus() )  {{-- როცა წაშლის მოდალი ამოხტება წაშლის ღილაკი იქნება დაფოკუსებული // confirmButton სელექტორია ღილაკის --}}
-    "  
+      " 
+    @endif
+
     x-init="
         Livewire.on('{{ $eventToCloseModal }}', () => {
             show = false
         })
+
+        @if($livewireEventToOpenModal)
+          Livewire.on('{{ $livewireEventToOpenModal }}', () => {
+            show = true
+            nextTick(()=> $refs.confirmButton.focus() )
+          })
+        @endif
     " 
 
     class="fixed z-20 inset-0 overflow-y-auto" 

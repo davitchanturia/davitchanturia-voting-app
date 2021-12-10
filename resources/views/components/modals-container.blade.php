@@ -7,3 +7,5 @@
 <livewire:mark-idea-as-not-spam :idea="$idea" />
 
 <livewire:edit-comment />
+
+<livewire:delete-comment />

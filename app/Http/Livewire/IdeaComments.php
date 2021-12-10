@@ -13,7 +13,7 @@ class IdeaComments extends Component
 
     public $idea;
 
-    public $listeners = ['commentWasAdded'];
+    public $listeners = ['commentWasAdded', 'commentWasDeleted'];
 
     public function mount(Idea $idea)
     {
@@ -24,6 +24,12 @@ class IdeaComments extends Component
     {
         $this->idea->refresh();
         $this->gotoPage($this->idea->comments()->paginate()->lastPage()); //გადადის ბოლო გვერდზე რო ანიმაციამ იმუშავოს და ჩასქროლოს სწორ კომენტარზე
+    }
+
+    public function commentWasDeleted()
+    {
+        $this->idea->refresh();
+        $this->gotoPage(1);
     }
 
     public function render()

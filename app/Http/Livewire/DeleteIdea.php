@@ -12,16 +12,9 @@ class DeleteIdea extends Component
 {
     public $idea;
 
-    // public $title;
-    // public $category;
-    // public $description;
-
     public function mount(Idea $idea)
     {
         $this->idea = $idea;
-        // $this->title = $idea->title;
-        // $this->category = $idea->category_id;
-        // $this->description = $idea->description;
     }
 
     public function deleteIdea()
