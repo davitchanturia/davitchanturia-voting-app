@@ -93,8 +93,8 @@ class StatusFiltersTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'category 1']);
 
         $statusOpen = Status::factory()->create(['name' => 'open']);
-        $statusConsidering = Status::factory()->create(['name' => 'considering', 'classes' => 'bg-purple text-white']);
-        $statusInProgress = Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
+        $statusConsidering = Status::factory()->create(['name' => 'considering']);
+        $statusInProgress = Status::factory()->create(['name' => 'In Progress']);
         $statusImplemented =  Status::factory()->create(['name' => 'Implemented']);
         $statusClosed =  Status::factory()->create(['name' => 'Closed']);
 
