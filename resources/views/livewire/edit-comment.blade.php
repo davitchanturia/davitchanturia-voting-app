@@ -60,7 +60,7 @@
                             name="idea" id="idea" cols="30" rows="4"  
                             class="w-full bg-gray-100 rounded-xl placeholder-gray-900 text-sm 
                                 px-4 py-2 border-none"
-                            placeholder="Edit your comment" required></textarea>
+                            placeholder="Edit your comment" ></textarea>
                  
                          @error('body')
                              <p class="text-red text-xs mt-1"> {{ $message }} </p>
