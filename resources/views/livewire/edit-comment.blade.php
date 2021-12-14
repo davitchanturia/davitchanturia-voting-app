@@ -57,7 +57,7 @@
                     <div>
                         <textarea wire:model.defer="body" 
                             x-ref="editComment"
-                            name="idea" id="idea" cols="30" rows="4"  
+                            name="idea" cols="30" rows="4"  
                             class="w-full bg-gray-100 rounded-xl placeholder-gray-900 text-sm 
                                 px-4 py-2 border-none"
                             placeholder="Edit your comment" ></textarea>

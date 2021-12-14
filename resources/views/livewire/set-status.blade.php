@@ -66,7 +66,7 @@
             </div>
 
             <div>
-                <textarea name="post_comment" id="post_comment" cols="30" rows="4" 
+                <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4" 
                 class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none py-2" 
                 placeholder="Add an update comment (optional)"></textarea>
             </div>

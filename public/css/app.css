@@ -26296,7 +26296,7 @@ select {
   position: absolute;
   display: block;
   top: 0;
-  left: -38px;
+  left: -40px;
   content: "";
   width: 3px;
   height: 100%;
@@ -26320,7 +26320,7 @@ select {
   position: absolute;
   display: block;
   top: 60px;
-  left: -40px;
+  left: -41px;
   content: "";
   width: 3px;
   height: calc(100% - 60px);
@@ -26335,7 +26335,6 @@ select {
   border: 7px solid white;
   box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
   left: -58px;
-  /* background: theme('colors.purple'); */
   opacity: 1;
   z-index: 1;
 }
@@ -26347,7 +26346,7 @@ select {
 
 .status-open, .status-open:before {
   --tw-bg-opacity: 1;
-  background-color: rgba(229, 229, 229, var(--tw-bg-opacity));
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
 
 .status-considering, .status-considering:before {

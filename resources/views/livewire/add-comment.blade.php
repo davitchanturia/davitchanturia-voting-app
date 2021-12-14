@@ -7,7 +7,7 @@
         {{-- კომენტარის დამატებისას უნდა ჩამოსქროლოს დამატებულ კომენტარზე და 5 წამით გაამწვანოს --}}
         Livewire.hook('message.processed', (message, component) => {
 
-            if(message.updateQueue[0].payload.event === 'commentWasAdded'  {{-- ვამოწმებთ ივენთს --}}
+            if (['commentWasAdded', 'statusWasUpdated'].includes(message.updateQueue[0].payload.event) {{-- ვამოწმებთ ივენთს --}}
              && message.component.fingerprint.name === 'idea-comments'){  {{-- ვამოწმებთ ელემენტს რომელზეც ზემოქმედებს ივენთი --}}
 
                 const lastComment = document.querySelector('.comment-container:last-child')

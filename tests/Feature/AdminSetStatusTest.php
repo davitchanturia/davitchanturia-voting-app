@@ -92,7 +92,7 @@ class AdminSetStatusTest extends TestCase
             ->assertSet('status', $statusConsidering->id);
     }
 
-    public function test_can_set_status_correctly()
+    public function test_can_set_status_correctly_no_comment()
     {
         $user = User::factory()->create([
             'email' => 'dato@redberry.ge'
@@ -124,6 +124,52 @@ class AdminSetStatusTest extends TestCase
         $this->assertDatabaseHas('ideas', [
             'id' => $idea->id,
             'status_id' => $statusInProgress->id
+        ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'No comment was added.',
+            'is_status_update' => 1,
+        ]);
+    }
+
+    public function test_can_set_status_correctly_with_comment()
+    {
+        $user = User::factory()->create([
+            'email' => 'dato@redberry.ge'
+        ]);
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusConsidering = Status::factory()->create(['id' => 2, 'name' => 'Considering']);
+        $statusInProgress = Status::factory()->create(['id' => 3, 'name' => 'In Progress']);
+
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusConsidering->id,
+            'title' => 'My First Idea',
+            'description' => 'Description for my first idea',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(SetStatus::class, [
+                'idea' => $idea,
+            ])
+            ->set('status', $statusInProgress->id)
+            ->set('comment', 'bla bla')
+            ->call('setStatus')
+            ->assertEmitted('statusWasUpdated');
+
+        $this->assertDatabaseHas('ideas', [
+            'id' => $idea->id,
+            'status_id' => $statusInProgress->id
+        ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'bla bla',
+            'is_status_update' => 1,
         ]);
     }
 
