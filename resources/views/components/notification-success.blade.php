@@ -57,6 +57,13 @@
             livewire.on('commentWasDeleted', message => {
                 showNotification(message)
             })
+            livewire.on('commentWasMarkedAsSpam', message => {
+                showNotification(message)
+            })
+
+            livewire.on('commentWasMarkedAsNotSpam', message => {
+                showNotification(message)
+            })
         @endif
     " 
     
