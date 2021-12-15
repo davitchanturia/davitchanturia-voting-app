@@ -42,76 +42,7 @@
                                 </a>
                             </form>
 
-                            <div x-data="{ show: false}" class="relative">
-                                <button @click="show = !show">
-                                    <svg class="h-8 w-8 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                        <path
-                                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                                    </svg>
-                                    <div  
-                                        class="absolute -top-1 -right-1 rounded-full border-2 bg-red text-white text-xxs w-6 h-6 flex 
-                                        justify-center items-center">
-                                        8
-                                    </div>
-                                </button>
-
-                                <ul class="absolute -right-28 md:-right-12 w-76 max-h-128 overflow-y-auto md:w-96 text-left text-xs bg-white shadow-dialog 
-                                    rounded-t-xl"
-                                    x-cloak
-                                    x-show="show"
-                                    x-transition.origin.top.duration.400ms
-                                    @click.away="show = false"
-                                    @keydown.escape.window="show = false">
-
-                                    <li>
-                                        <a @click.prevent="
-                                             show = false
-                                            " href="#" class="flex hover:bg-gray-100 px-5 py-3 ">
-                                            <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" 
-                                                class="rounded-xl w-10 h-10" alt="avatar">
-                                            <div class="ml-4">
-                                                <div class="line-clamp-6">
-                                                    <span class="font-semibold">dasad</span>
-                                                    comented on
-                                                    <span>this is my idea</span>:
-                                                    <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, unde, quos fuga cumque sed tempore quisquam debitis id quo amet officia vitae perspiciatis exercitationem. Ad dolorum eligendi, suscipit non alias sit nihil sint sapiente aut, temporibus eos commodi reprehenderit deserunt dicta beatae ex fuga nisi totam nam quo voluptates libero."
-                                                    </span>
-                                                    
-                                                </div>
-                                                <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a @click.prevent="
-                                             show = false
-                                            " href="#" class="flex hover:bg-gray-100 px-5 py-3 ">
-                                            <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" 
-                                                class="rounded-xl w-10 h-10" alt="avatar">
-                                            <div class="ml-4">
-                                                <div class="line-clamp-6">
-                                                    <span class="font-semibold">dasad</span>
-                                                    comented on
-                                                    <span>this is my idea</span>:
-                                                    <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, unde, quos fuga cumque sed tempore quisquam debitis id quo amet officia vitae perspiciatis exercitationem. Ad dolorum eligendi, suscipit non alias sit nihil sint sapiente aut, temporibus eos commodi reprehenderit deserunt dicta beatae ex fuga nisi totam nam quo voluptates libero."
-                                                    </span>
-                                                    
-                                                </div>
-                                                <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li class="border-t border-gray-300 text-center">
-                                        <button 
-                                           class="w-full block font-semibold hover:bg-gray-100 px-5 py-4">
-                                           Mark all as read
-                                        </button>
-                                    </li>
-
-                                </ul>
-                            </div>
+                            <livewire:comment-notifications />
                         </div>
 
                     @else

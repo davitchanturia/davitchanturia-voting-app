@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Notifications\CommentAdded;
 use Illuminate\Http\Response;
 use Livewire\Component;
 
@@ -29,17 +30,19 @@ class AddComment extends Component
 
         $this->validate();
 
-        Comment::create([
+        $newComment = Comment::create([
             'user_id' => auth()->id(),
             'idea_id' => $this->idea->id,
             'status_id' => 1,
             'body' => $this->comment,
         ]);
-
-        $this->emit('commentWasAdded', 'comment was added succesfully!');
-
+       
         //clear the form
         $this->reset('comment');
+
+        $this->idea->user->notify(new CommentAdded($newComment)); //send notification to the idea user when someone wrote comment on his post
+
+        $this->emit('commentWasAdded', 'comment was added succesfully!');
     }
 
     public function render()
