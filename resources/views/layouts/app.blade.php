@@ -30,7 +30,7 @@
         <div class="flex items-center mt-2 md:mt-0">
 
             @if (Route::has('login'))
-                <div class="px-6 py-4">
+                <div class="flex items-center px-6 py-4">
                     <div class="flex items-center space-x-4">
                         @auth
                             <form method="POST" action="{{ route('logout') }}">
@@ -58,7 +58,7 @@
             @endif
 
 
-            <a href="#">
+            <a href="#" class="ml-2">
                 <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
                     class="w-10 h-10 rounded-full">
             </a>
