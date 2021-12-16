@@ -1,4 +1,8 @@
-<div x-data="{ show: false}" class="relative">
+<div 
+    wire:poll="getNotificationCount" 
+    x-data="{ show: false}" 
+    class="relative"
+>
     <button @click="
         show = !show
 
