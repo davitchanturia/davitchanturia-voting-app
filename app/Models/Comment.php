@@ -11,7 +11,7 @@ class Comment extends Model
 
     protected $guarded = [];
     
-    protected $perPage = 10;
+    protected $perPage = 15;
     
     public function user()
     {

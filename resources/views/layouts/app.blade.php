@@ -124,6 +124,14 @@
         <x-notification-success :ifFullRefresh="true" messageToDisplay="{{ session('success_message') }}" />
     @endif
 
+    @if (session('error_message'))
+        <x-notification-success 
+            type="error"
+            :ifFullRefresh="true" 
+            messageToDisplay="{{ session('error_message') }}" 
+        />
+    @endif
+
     <livewire:scripts />
 </body>
 
