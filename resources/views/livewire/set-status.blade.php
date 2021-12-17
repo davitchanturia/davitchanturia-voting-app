@@ -5,6 +5,9 @@
         window.livewire.on('statusWasUpdated', () => {
             show = false
         })
+        window.livewire.on('statusWasUpdatedError', () => {
+            show = false
+        })
     "
 >
     <button type="button" 

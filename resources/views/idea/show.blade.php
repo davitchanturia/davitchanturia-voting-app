@@ -1,5 +1,7 @@
 <x-app-layout>
-  
+   <x-slot name="title">
+       {{$idea->title}} | Laracast Voting
+   </x-slot>
     <div>
         <a href="{{ $backUrl }}" class="flex items-center font-semibold hover:underline">
             <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">

@@ -25,9 +25,6 @@ class DeleteIdea extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        Vote::where('idea_id', $this->idea->id)->delete();  // ვშლით ყველა იმ ვოუთებს რომელიც იდეასთან არის დაკავშირებული
-        Comment::where('idea_id', $this->idea->id)->delete();  // ვშლით ყველა იმ კომენტარებს რომელიც იდეასთან არის დაკავშირებული
-
         Idea::destroy($this->idea->id);  //და შემდეგ ვშლით იდეას
 
         // session flash message

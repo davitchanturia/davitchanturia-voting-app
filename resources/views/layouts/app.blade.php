@@ -5,8 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <title>Laracast Voting</title>
+    <title>{{ $title ?? 'Laracast Voting' }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
@@ -57,11 +62,12 @@
                 </div>
             @endif
 
-
-            <a href="#" class="ml-2">
-                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
+            @auth   
+                <a href="#" class="ml-2">
+                    <img src="{{auth()->user()->getAvatar()}}" alt="avatar"
                     class="w-10 h-10 rounded-full">
-            </a>
+                </a>
+            @endauth
         </div>
     </header>
 

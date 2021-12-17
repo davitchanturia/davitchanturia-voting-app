@@ -13,7 +13,7 @@
                         {{ $idea->title }} 
                     </h4>
 
-                    <div class="text-gray-600 mt-3 line-clamp-3">
+                    <div class="text-gray-600 mt-3">
                         @admin
                             @if ($idea->spam_reports > 0)   
                                 <div class="text-red mb-2">
@@ -22,7 +22,7 @@
                                 </div>
                             @endif
                          @endadmin
-                        {{ $idea->description }}
+                        {!! nl2br(e($idea->description)) !!}
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
