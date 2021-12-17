@@ -37,7 +37,7 @@
                                 @csrf
 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
+                                                                    this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </a>
                             </form>
@@ -74,38 +74,19 @@
                      background-clip: content-box, border-box;
                    ""
                 >
-                    <div class="   text-center px-6 py-2 pt-6">
-                <h3 class="text-base font-semibold">Add an idea</h3>
-                <p class="text-xs mt-4">
-                    @auth
-                        Let us know what you would like and we will take a look over!
-                    @else
-                        Please login to create a idea
-                    @endauth
-                </p>
+                    <div class="text-center px-6 py-2 pt-6">
+                        <h3 class="text-base font-semibold">Add an idea</h3>
+                        <p class="text-xs mt-4">
+                            @auth
+                                Let us know what you would like and we will take a look over!
+                            @else
+                                Please login to create a idea
+                            @endauth
+                        </p>
+                    </div>
+
+            <livewire:create-idea />
             </div>
-
-
-            @auth
-                <livewire:create-idea />
-            @else
-                <div class="my-6 text-center">
-                    <a href="{{ route('login') }}"
-                        class="justify-center inline-block w-1/2 h-11 text-sm text-white bg-blue px-6 py-3 font-semibold rounded-xl border border-blue hover:bg-blue-hover
-                                transition duration-150 ease-in
-                            ">
-                        Login
-                    </a>
-
-                    <a href="{{ route('register') }}"
-                        class="justify-center inline-block w-1/2 h-11 text-sm mt-2 bg-gray-200 px-6 py-3 font-semibold rounded-xl border border-gray-200 hover:border-gray-400
-                                transition duration-150 ease-in
-                            ">
-                        Sign up
-                    </a>
-                </div>
-            @endauth
-        </div>
         </div>
 
         <div class="w-full px-2 md:px-0 md:w-175">
@@ -125,11 +106,8 @@
     @endif
 
     @if (session('error_message'))
-        <x-notification-success 
-            type="error"
-            :ifFullRefresh="true" 
-            messageToDisplay="{{ session('error_message') }}" 
-        />
+        <x-notification-success type="error" :ifFullRefresh="true"
+            messageToDisplay="{{ session('error_message') }}" />
     @endif
 
     <livewire:scripts />

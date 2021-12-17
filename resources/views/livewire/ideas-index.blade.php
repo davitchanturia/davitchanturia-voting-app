@@ -20,7 +20,7 @@
 
                 <option value="No Filter">No Filters</option>
                 <option value="Top Voted">Top Voted</option>
-                <option value="My Ideas">My Ideas</option>
+                <option wire:click.prevent="redirectToLogin" value="My Ideas">My Ideas</option>
                 @admin
                 <option value="Spam Ideas">Spam Ideas</option>
                 <option value="Spam Comments">Spam Comments</option>
