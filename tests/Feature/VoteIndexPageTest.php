@@ -60,39 +60,26 @@ class VoteIndexPageTest extends TestCase
         ->assertSet('votesCount', 5);
     }
 
-    public function test_user_id_logged_in_shows_voted_if_idea_already_voted_for_in_index_page()
+    public function test_user_who_is_logged_in_shows_voted_if_idea_already_voted_for()
     {
         $user = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'category 2']);
-
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
+            'idea_id' => $idea->id,
             'user_id' => $user->id,
-            'idea_id' => $idea->id
         ]);
 
-        $response = $this->actingAs($user)->get(route('idea.index'));
-
-        $ideaWithVotes = $response['ideas']->items()[0];
+        $idea->votes_count = 1;
+        $idea->voted_by_user = 1;
 
         Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
-                'idea' => $ideaWithVotes,
-                'votesCount' => 5
+                'idea' => $idea,
+                'votesCount' => 5,
             ])
-        ->assertSet('hasVoted', true)
-        ->assertSee('Voted');
+            ->assertSet('hasVoted', true)
+            ->assertSee('Voted');
     }
 
     public function test_user_who_is_not_logged_in_is_redirected_to_login_page_when_trying_to_vote_on_index_page()
@@ -140,29 +127,26 @@ class VoteIndexPageTest extends TestCase
     {
         $user = User::factory()->create();
     
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-        ]);
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
             'user_id' => $user->id,
             'idea_id' => $idea->id,
         ]);
 
-        $this->assertDatabaseHas('votes', [
-            'user_id' => $user->id,
-            'idea_id' => $idea->id
-        ]);
+        $idea->votes_count = 1;
+        $idea->voted_by_user = 1;
 
         Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
                 'idea' => $idea,
-                'votesCount' => 1
+                'votesCount' => 5
             ])
             ->call('vote')
-            ->assertSet('votesCount', 0)
+            ->assertSet('votesCount', 4)
             ->assertSet('hasVoted', false)
-            ->assertSee('Vote');
+            ->assertSee('Vote')
+            ->assertDontSee('Voted');
 
         $this->assertDatabaseMissing('votes', [
             'user_id' => $user->id,

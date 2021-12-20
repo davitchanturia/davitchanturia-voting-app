@@ -22,9 +22,9 @@ class MarkCommentAsNotSpam extends Component
     public function markAsNotSpam()
     {
         //authorization
-        //  if (auth()->guest() || auth()->user()->cannot('delete', $this->comment)) {
-        //     abort(Response::HTTP_FORBIDDEN);
-        // }
+         if (auth()->guest() || auth()->user()->cannot('delete', $this->comment)) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
 
         $this->comment->spam_reports = 0;
         $this->comment->save();

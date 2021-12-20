@@ -18,19 +18,7 @@ class StatusFiltersTest extends TestCase
 
     public function test_index_page_contains_status_filter_livewire_component()
     {
-        $user = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+        Idea::factory()->create();
 
         $this->get(route('idea.index'))
             ->assertSeeLivewire('status-filters');
@@ -38,21 +26,9 @@ class StatusFiltersTest extends TestCase
 
     public function test_show_page_contains_status_filter_livewire_component()
     {
-        $user = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
+        $idea = Idea::factory()->create();
 
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
-
-        $this->get(route('idea.show', [$idea]))
+        $this->get(route('idea.show', $idea))
             ->assertSeeLivewire('status-filters');
     }
 

@@ -35,45 +35,20 @@ class ShowIdeasTest extends TestCase
 
     public function test_in_app_back_button_works_when_index_page_visited_first()
     {
-        $user = User::factory()->create();
+        $ideaOne = Idea::factory()->create();
 
-        $category = Category::factory()->create(['name' => 'category 1']);
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $response = $this->get('/?category=Category%202&status=Considering');
+        $response = $this->get(route('idea.show', $ideaOne));
 
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'My First Idea',
-            'description' => 'description for idea',
-            'category_id' => $category->id,
-            'status_id' => $statusOpen->id,
-        ]);
-
-        $response = $this->get('/?category=Category%202&status=Open');
-        $response = $this->get(route('idea.show', [$idea]));
-        
-        $this->assertStringContainsString('/?category=Category%202&status=Open', $response['backUrl']);
+        $this->assertStringContainsString('/?category=Category%202&status=Considering', $response['backUrl']);
     }
 
     public function test_in_app_back_button_works_when_show_page_only_page_visited()
     {
-        $user = User::factory()->create();
+        $ideaOne = Idea::factory()->create();
 
-        $category = Category::factory()->create(['name' => 'category 1']);
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $response = $this->get(route('idea.show', $ideaOne));
 
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'My First Idea',
-            'description' => 'description for idea',
-            'category_id' => $category->id,
-            'status_id' => $statusOpen->id,
-        ]);
-
-        $response = $this->get(route('idea.show', [$idea]));
-        
-        
-        $this->assertStringContainsString(route('idea.index'), $response['backUrl']);
+        $this->assertEquals(route('idea.index'), $response['backUrl']);
     }
 }

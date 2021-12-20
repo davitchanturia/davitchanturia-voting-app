@@ -20,7 +20,7 @@ class CreateIdeaTest extends TestCase
         $response = $this->get(route('idea.index'));
 
         $response->assertSuccessful();
-        $response->assertSee('Please login to create a idea ');
+        $response->assertSee('Please login to create a idea');
         $response->assertDontSee('Let us know what you would like and we will take a look over!');
     }
 
@@ -88,20 +88,17 @@ class CreateIdeaTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $categoryOne = Category::factory()->create(['name' => 'Categoory 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'Categoory 2']);
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
 
         Livewire::actingAs($user)
             ->test(CreateIdea::class)
             ->set('title', 'My First Idea')
             ->set('category', $categoryOne->id)
-            ->set('description', 'idea description')
+            ->set('description', 'This is my first idea')
             ->call('createIdea')
             ->assertRedirect('/');
-
 
         $this->assertDatabaseHas('ideas', [
             'title' => 'My First Idea',
@@ -112,10 +109,9 @@ class CreateIdeaTest extends TestCase
             ->test(CreateIdea::class)
             ->set('title', 'My First Idea')
             ->set('category', $categoryOne->id)
-            ->set('description', 'idea description')
+            ->set('description', 'This is my first idea')
             ->call('createIdea')
             ->assertRedirect('/');
-
 
         $this->assertDatabaseHas('ideas', [
             'title' => 'My First Idea',

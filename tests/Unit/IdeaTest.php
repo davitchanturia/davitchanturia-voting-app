@@ -18,20 +18,8 @@ class IdeaTest extends TestCase
     {
         $user = User::factory()->create();
         $userB = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'category 2']);
 
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
             'user_id' => $user->id,
@@ -43,24 +31,11 @@ class IdeaTest extends TestCase
         $this->assertFalse($idea->isVotedByUser(null));
     }
 
-    public function test_can_check_if_idea_is_voted()
+    public function test_user_can_vote_for_idea()
     {
         $user = User::factory()->create();
-        $userB = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'category 2']);
-
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+       
+        $idea = Idea::factory()->create();
 
         $this->assertFalse($idea->isVotedByUser($user));
         $idea->vote($user);
@@ -70,22 +45,12 @@ class IdeaTest extends TestCase
     public function test_user_can_remove_vote_for_idea()
     {
         $user = User::factory()->create();
-        
-        $categoryOne = Category::factory()->create(['name' => 'category 1']);
 
-        $statusOpen =  Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'title' => 'my first idea',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'description' => 'description for first idea'
-        ]);
+        $idea = Idea::factory()->create();
 
         Vote::factory()->create([
+            'idea_id' => $idea->id,
             'user_id' => $user->id,
-            'idea_id' => $idea->id
         ]);
 
         $this->assertTrue($idea->isVotedByUser($user));
